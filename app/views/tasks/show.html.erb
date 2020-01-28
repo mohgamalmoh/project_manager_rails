@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @task.done %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= link_to @task.project.name , @task.project%>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
+
+
+
+<h2>Comments</h2>
+<% @task.comments.each do |comment|%>
+  <%= comment.body %>
+<% end %>
+
+<%=form_for([@task, @task.comments.build]) do |f| %>
+  <% f.text_field :name , placeholder: "name"%>
+  <% f.text_field :body %>
+  <% f.email_field :email %>
+<%end %>
