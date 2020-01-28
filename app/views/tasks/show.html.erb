@@ -22,11 +22,13 @@
 
 <h2>Comments</h2>
 <% @task.comments.each do |comment|%>
+  <%= comment.name %>:
   <%= comment.body %>
 <% end %>
 
 <%=form_for([@task, @task.comments.build]) do |f| %>
-  <% f.text_field :name , placeholder: "name"%>
-  <% f.text_field :body %>
-  <% f.email_field :email %>
+  <%= f.text_field :name , placeholder: "name"%>
+  <%= f.email_field :email %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
 <%end %>
