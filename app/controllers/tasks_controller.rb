@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /tasks
   # GET /tasks.json
@@ -61,6 +61,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def toggle
+    @task.toggle(:done).save
+    head 204
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
